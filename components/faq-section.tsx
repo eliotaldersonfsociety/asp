@@ -2,16 +2,40 @@ import { FAQItem } from "./faq-item"
 
 const faqs = [
   {
-    question: "Es seguro para mi cuenta?",
+    question: "¿Es seguro para mi cuenta?",
     answer:
-      "Si. Utilizamos metodos que respetan los terminos de servicio de cada plataforma...",
+      "Sí. Utilizamos métodos orgánicos y estratégicos que respetan los términos de servicio de cada plataforma para garantizar la seguridad total de tu cuenta.",
   },
   {
-    question: "Los seguidores son reales?",
+    question: "¿Los seguidores son reales?",
     answer:
-      "Trabajamos con una red de usuarios reales interesados en diferentes nichos...",
+      "Trabajamos con una red de usuarios reales y perfiles de alta calidad interesados en diferentes nichos, lo que garantiza un crecimiento con apariencia natural.",
   },
-  // resto igual
+  {
+    question: "¿Cómo funciona el servicio de IA Política?",
+    answer:
+      "Nuestra IA analiza el sentimiento de la audiencia en tiempo real, optimiza tus mensajes clave y monitorea la percepción pública para ajustar tu estrategia de comunicación de manera efectiva.",
+  },
+  {
+    question: "¿Cuánto tiempo tarda en iniciar el servicio?",
+    answer:
+      "La mayoría de los servicios de SMM inician en menos de 24 horas. Los análisis estratégicos de IA suelen entregarse en reportes semanales tras la configuración inicial.",
+  },
+  {
+    question: "¿Necesitan mi contraseña?",
+    answer:
+      "Nunca te pediremos tu contraseña. Solo necesitamos el enlace público de tu perfil o el @usuario para aplicar las estrategias de crecimiento.",
+  },
+  {
+    question: "¿Qué métodos de pago aceptan?",
+    answer:
+      "Aceptamos Bancolombia, Nequi, Daviplata y PayPal. Todos los pagos son seguros y procesados de manera profesional.",
+  },
+  {
+    question: "¿Ofrecen garantía en el servicio?",
+    answer:
+      "Sí, contamos con garantía de reposición en nuestros servicios de crecimiento y soporte estratégico continuo para asegurar tu satisfacción absoluta.",
+  },
 ]
 
 export function FAQSection() {
