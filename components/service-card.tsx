@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/contexts/cart-context"
+import { useLanguage } from "@/contexts/language-context"
 import { DiagnosticModal } from "@/components/diagnostic-modal"
 
 const iconMap: Record<string, any> = {
@@ -33,6 +34,7 @@ const iconMap: Record<string, any> = {
 
 export function ServiceCard({ service }: { service: any }) {
   const { addToCart } = useCart()
+  const { t, formatPrice } = useLanguage()
   const [added, setAdded] = useState(false)
   const [showDiagnostic, setShowDiagnostic] = useState(false)
 
@@ -115,8 +117,7 @@ export function ServiceCard({ service }: { service: any }) {
         {/* PRICE */}
         <div className="mt-auto">
           <div className="mb-4">
-            <span className="text-3xl font-bold">${service.price.toLocaleString()}</span>
-            <span className="text-muted-foreground"> COP</span>
+            <span className="text-3xl font-bold">{formatPrice(service.price)}</span>
           </div>
 
           <div className="space-y-2">
@@ -127,12 +128,12 @@ export function ServiceCard({ service }: { service: any }) {
             >
               {added ? (
                 <>
-                  <Check className="w-4 h-4 mr-2" /> Agregado
+                  <Check className="w-4 h-4 mr-2" /> {t.services.added}
                 </>
               ) : (
                 <>
                   <ShoppingCart className="w-4 h-4 mr-2" />
-                  Agregar al carrito
+                  {t.services.addToCart}
                 </>
               )}
             </Button>
@@ -144,7 +145,7 @@ export function ServiceCard({ service }: { service: any }) {
                 onClick={() => setShowDiagnostic(true)}
               >
                 <ClipboardCheck className="w-4 h-4 mr-2" />
-                Como podemos ayudarte?
+                {t.services.howHelp}
               </Button>
             )}
           </div>

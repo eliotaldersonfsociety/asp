@@ -36,6 +36,16 @@ export function HeaderMobile() {
 
   return (
     <div className="flex items-center gap-2">
+      {/* LANGUAGE TOGGLE */}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="font-bold w-10 h-10 rounded-full"
+        onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+      >
+        {language === 'es' ? 'EN' : 'ES'}
+      </Button>
+
       {/* THEME TOGGLE */}
       <Button
         variant="ghost"
@@ -68,16 +78,16 @@ export function HeaderMobile() {
               <p className="text-xs text-muted-foreground truncate">{user.email}</p>
             </div>
             <DropdownMenuItem asChild>
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href="/dashboard">{t.nav.dashboard}</Link>
             </DropdownMenuItem>
             {user.role === "admin" && (
               <DropdownMenuItem asChild>
-                <Link href="/admin/dashboard" className="text-accent">Panel Admin</Link>
+                <Link href="/admin/dashboard" className="text-accent">{t.nav.adminPanel}</Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => { logout(); setOpen(false); }} className="text-destructive">
-              Cerrar sesión
+              {t.nav.logout}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -116,10 +126,10 @@ export function HeaderMobile() {
           <nav className="flex flex-col p-2">
             {/* NAV LINKS */}
             {[
-              ["Beneficios", "/#beneficios"],
-              ["Cómo Funciona", "/#como-funciona"],
-              ["Servicios", "/#servicios"],
-              ["FAQ", "/#faq"],
+              [t.nav.benefits, "/#beneficios"],
+              [t.nav.howItWorks, "/#como-funciona"],
+              [t.nav.services, "/#servicios"],
+              [t.nav.faq, "/#faq"],
             ].map(([label, href]) => (
               <a
                 key={href}
@@ -135,7 +145,7 @@ export function HeaderMobile() {
               className="text-sm px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
               onClick={() => setOpen(false)}
             >
-              Contacto
+              {t.nav.contact}
             </Link>
 
             <div className="mt-2 pt-2 border-t border-border flex flex-col gap-1 p-2">
@@ -155,14 +165,14 @@ export function HeaderMobile() {
 
                   <Button size="sm" variant="outline" asChild>
                     <Link href="/dashboard" onClick={() => setOpen(false)}>
-                      Mi Dashboard
+                      {t.nav.dashboard}
                     </Link>
                   </Button>
 
                   {user.role === "admin" && (
                     <Button size="sm" variant="outline" asChild>
                       <Link href="/admin/dashboard" onClick={() => setOpen(false)}>
-                        Panel Admin
+                        {t.nav.adminPanel}
                       </Link>
                     </Button>
                   )}
@@ -175,20 +185,20 @@ export function HeaderMobile() {
                       setOpen(false)
                     }}
                   >
-                    Cerrar Sesión
+                    {t.nav.logout}
                   </Button>
                 </>
               ) : (
                 <>
                   <Button size="sm" variant="outline" asChild>
                     <Link href="/login" onClick={() => setOpen(false)}>
-                      Iniciar Sesión
+                      {t.nav.login}
                     </Link>
                   </Button>
 
                   <Button size="sm" asChild>
                     <Link href="/register" onClick={() => setOpen(false)}>
-                      Crear Cuenta
+                      {t.nav.createAccount}
                     </Link>
                   </Button>
                 </>

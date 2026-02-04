@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button"
 import { services } from "@/contexts/service.data"
 import { ServiceCard } from "./service-card"
 import { useCart } from "@/contexts/cart-context"
+import { useLanguage } from "@/contexts/language-context"
 
 export function ServicesSection() {
   const { totalItems } = useCart()
+  const { t } = useLanguage()
 
   return (
     <section id="servicios" className="py-20 md:py-32 bg-secondary/30">
@@ -16,10 +18,10 @@ export function ServicesSection() {
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Nuestros Servicios
+            {t.services.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Elige el plan que mejor se adapte a tus necesidades de crecimiento digital
+            {t.services.subtitle}
           </p>
         </div>
 
@@ -36,7 +38,7 @@ export function ServicesSection() {
             <Button size="lg" asChild>
               <Link href="/checkout">
                 <ShoppingCart className="w-5 h-5 mr-2" />
-                Ver carrito ({totalItems})
+                {t.services.viewCart} ({totalItems})
               </Link>
             </Button>
           </div>

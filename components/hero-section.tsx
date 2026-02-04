@@ -1,8 +1,18 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, MessageCircle } from "lucide-react"
 import NeuralCanvas from "@/components/brain"
+import { useLanguage } from "@/contexts/language-context"
 
 export function HeroSection() {
+  const { t } = useLanguage()
+
+  const stats = [
+    { value: "500K+", label: t.hero.stats.followers },
+    { value: "99%", label: t.hero.stats.satisfied },
+    { value: "1M+", label: t.hero.stats.likes },
+    { value: "24/7", label: t.hero.stats.support },
+  ]
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       
@@ -22,27 +32,26 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-8">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-sm text-muted-foreground">
-              Crecimiento Real en Redes Sociales
+              {t.hero.badge}
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Aumenta tus seguidores, likes y engagement de forma real
+            {t.hero.title}
           </h1>
 
           <p className="text-xl md:text-2xl text-accent font-medium mb-4">
-            "No vendemos números. Construimos percepción digital."
+            {t.hero.tagline}
           </p>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-            Impulsa tu presencia en redes sociales con seguidores reales, likes genuinos,
-            comentarios activos y viewers en vivo. Servicio premium de IA para campañas políticas.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="gap-2" asChild>
               <a href="#servicios">
-                Ver Planes de Crecimiento
+                {t.hero.btnPrimary}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </Button>
@@ -54,7 +63,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
               >
                 <MessageCircle className="w-4 h-4" />
-                Agendar Diagnóstico Estratégico
+                {t.hero.btnSecondary}
               </a>
             </Button>
           </div>
@@ -62,12 +71,7 @@ export function HeroSection() {
 
         {/* STATS */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {[
-            { value: "500K+", label: "Seguidores entregados" },
-            { value: "99%", label: "Clientes satisfechos" },
-            { value: "1M+", label: "Likes generados" },
-            { value: "24/7", label: "Soporte disponible" },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold">
                 {stat.value}

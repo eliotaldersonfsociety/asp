@@ -14,6 +14,7 @@ import {
 import { useTheme } from "next-themes"
 import { useAuth } from "@/contexts/auth-context"
 import { useCart } from "@/contexts/cart-context"
+import { useLanguage } from "@/contexts/language-context"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,6 +27,7 @@ export function HeaderActions() {
   const { resolvedTheme, setTheme } = useTheme()
   const { user, logout, isLoading } = useAuth()
   const { totalItems } = useCart()
+  const { language, setLanguage, t } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -36,6 +38,16 @@ export function HeaderActions() {
 
   return (
     <div className="hidden md:flex items-center gap-2">
+      {/* LANGUAGE TOGGLE */}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="font-bold w-10 h-10 rounded-full"
+        onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+      >
+        {language === 'es' ? 'EN' : 'ES'}
+      </Button>
+
       {/* THEME */}
       <Button
         variant="ghost"
@@ -78,14 +90,14 @@ export function HeaderActions() {
 
             <DropdownMenuItem asChild>
               <Link href="/dashboard" className="flex gap-2">
-                <LayoutDashboard className="w-4 h-4" /> Dashboard
+                <LayoutDashboard className="w-4 h-4" /> {t.nav.dashboard}
               </Link>
             </DropdownMenuItem>
 
             {user.role === "admin" && (
               <DropdownMenuItem asChild>
                 <Link href="/admin/dashboard" className="flex gap-2 text-accent">
-                  <LayoutDashboard className="w-4 h-4" /> Panel Admin
+                  <LayoutDashboard className="w-4 h-4" /> {t.nav.adminPanel}
                 </Link>
               </DropdownMenuItem>
             )}
@@ -96,7 +108,7 @@ export function HeaderActions() {
               onClick={logout}
               className="text-destructive flex gap-2 focus:bg-destructive/10 focus:text-destructive"
             >
-              <LogOut className="w-4 h-4" /> Cerrar sesión
+              <LogOut className="w-4 h-4" /> {t.nav.logout}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

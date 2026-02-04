@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "next-themes"
 import { CartProvider } from "@/contexts/cart-context"
 import { AuthProvider } from "@/contexts/auth-context"
+import { LanguageProvider } from "@/contexts/language-context"
 import "./globals.css"
 import NeuralCanvas from "@/components/brain"
 
@@ -100,12 +101,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <CartProvider>
-              <NeuralCanvas />
-              {children}
-            </CartProvider>
-          </AuthProvider>
+          <LanguageProvider>
+            <AuthProvider>
+              <CartProvider>
+                <NeuralCanvas />
+                {children}
+              </CartProvider>
+            </AuthProvider>
+          </LanguageProvider>
         </ThemeProvider>
         <Analytics />
       </body>

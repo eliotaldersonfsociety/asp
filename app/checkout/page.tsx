@@ -28,6 +28,7 @@ import { useCart } from "@/contexts/cart-context"
 import { useAuth } from "@/contexts/auth-context"
 import { useTheme } from "next-themes"
 import { useDropzone } from "react-dropzone"
+import { useLanguage } from "@/contexts/language-context"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { completeOrderAction } from "@/lib/actions/orders"
@@ -57,15 +58,7 @@ export default function CheckoutPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [filePreview, setFilePreview] = useState<string | null>(null)
   const [showGuestForm, setShowGuestForm] = useState(false)
-
-  // Formateador de moneda consistente para Colombia
-  const formatCOP = (amount: number) => {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0,
-    }).format(amount).replace('COP', '').trim() + ' COP'
-  }
+  const { t, formatPrice } = useLanguage()
 
   // Identificamos si hay servicios que requieren diagnóstico/evaluación estratégica
   const diagnosticServiceIds = ["ia-politica", "combo-total", "victoria-360", "gestion-crisis", "marca-elite", "monitor-oposicion"]
@@ -92,7 +85,7 @@ export default function CheckoutPage() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
-    alert("Copiado al portapapeles")
+    alert(t.checkout.copied)
   }
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -184,12 +177,12 @@ export default function CheckoutPage() {
           <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
             <CreditCard className="w-10 h-10 text-muted-foreground" />
           </div>
-          <h1 className="text-2xl font-semibold text-foreground mb-4">Tu carrito está vacío</h1>
+          <h1 className="text-2xl font-semibold text-foreground mb-4">{t.checkout.empty}</h1>
           <p className="text-muted-foreground mb-8">
-            Agrega servicios a tu carrito para comenzar a potenciar tu presencia digital.
+            {t.checkout.emptyDesc}
           </p>
           <Button asChild>
-            <Link href="/#servicios">Ver Servicios</Link>
+            <Link href="/#servicios">{t.checkout.seeServices}</Link>
           </Button>
         </div>
       </div>
@@ -207,10 +200,10 @@ export default function CheckoutPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver
+              {t.checkout.back}
             </Link>
           </Button>
-          <h1 className="text-xl font-bold text-foreground">Finalizar Compra</h1>
+          <h1 className="text-xl font-bold text-foreground">{t.checkout.title}</h1>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -227,12 +220,12 @@ export default function CheckoutPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="font-medium text-foreground">{item.name}</h3>
                       {diagnosticServiceIds.includes(item.id) && (
-                        <span className="px-2 py-0.5 rounded text-xs bg-accent/20 text-accent">IA / Estratégico</span>
+                        <span className="px-2 py-0.5 rounded text-xs bg-accent/20 text-accent">IA / Strategic</span>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
                     <p className="text-accent font-bold mt-1 text-lg">
-                      {formatCOP(item.price)}
+                      {formatPrice(item.price)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -278,10 +271,10 @@ export default function CheckoutPage() {
                   />
                   <div className="flex-1">
                     <Label htmlFor="strategic-setup" className="text-foreground font-medium cursor-pointer">
-                      Agregar Setup Estratégico Inicial (+{formatCOP(setupPrice)})
+                      {t.checkout.strategicSetup} (+{formatPrice(setupPrice)})
                     </Label>
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
-                      Recomendado para maximizar resultados desde el primer día.
+                      {t.checkout.setupDesc}
                     </p>
                     <ul className="space-y-1">
                       {[
@@ -306,11 +299,10 @@ export default function CheckoutPage() {
               <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border">
                 <div className="flex items-center gap-3 mb-2">
                   <Clock className="w-5 h-5 text-yellow-500" />
-                  <span className="font-medium text-foreground">Estado del pedido</span>
+                  <span className="font-medium text-foreground">{t.checkout.orderStatus}</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Los servicios estratégicos requieren una evaluación previa exhaustiva.
-                  Tu orden quedará en estado <span className="text-yellow-500 font-medium">"En proceso de evaluación"</span> hasta completar la auditoría inicial.
+                  {t.checkout.strategicNote}
                 </p>
               </div>
             )}
@@ -318,22 +310,22 @@ export default function CheckoutPage() {
             {/* Totals */}
             <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Subtotal mensual:</span>
-                <span className="text-foreground font-medium">{formatCOP(totalPrice)}</span>
+                <span className="text-muted-foreground">{t.checkout.subtotal}</span>
+                <span className="text-foreground font-medium">{formatPrice(totalPrice)}</span>
               </div>
               {hasStrategicSetup && (
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Setup Estratégico (único):</span>
-                  <span className="text-foreground font-medium">{formatCOP(setupPrice)}</span>
+                  <span className="text-muted-foreground">{t.checkout.setupFee}</span>
+                  <span className="text-foreground font-medium">{formatPrice(setupPrice)}</span>
                 </div>
               )}
               <div className="flex items-center justify-between text-xl pt-4 border-t border-border">
-                <span className="text-foreground font-semibold">Total a pagar:</span>
-                <span className="font-black text-accent">{formatCOP(finalTotal)}</span>
+                <span className="text-foreground font-semibold">{t.checkout.total}</span>
+                <span className="font-black text-accent">{formatPrice(finalTotal)}</span>
               </div>
               {hasStrategicSetup && (
                 <p className="text-xs text-muted-foreground italic">
-                  * El Setup Estratégico es un pago único por cuenta. La suscripción de {formatCOP(totalPrice)} se cobrará mensualmente.
+                  * {t.checkout.recurringNote}
                 </p>
               )}
             </div>

@@ -1,8 +1,18 @@
+"use client"
+
 import Link from "next/link"
 import { Logo } from "@/components/logo"
 import { HeaderMobile } from "@/components/header-mobile.client"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Header() {
+  const { t } = useLanguage()
+
+  const navItems = [
+    [t.nav.services, "/#servicios"],
+    [t.nav.faq, "/#faq"],
+  ]
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,14 +25,9 @@ export function Header() {
             </span>
           </Link>
 
-          {/* NAV DESKTOP (SERVER) */}
+          {/* NAV DESKTOP (CLIENT) */}
           <nav className="hidden md:flex items-center gap-8">
-            {[
-              ["Beneficios", "/#beneficios"],
-              ["Cómo Funciona", "/#como-funciona"],
-              ["Servicios", "/#servicios"],
-              ["FAQ", "/#faq"],
-            ].map(([label, href]) => (
+            {navItems.map(([label, href]) => (
               <a
                 key={href}
                 href={href}
@@ -35,7 +40,7 @@ export function Header() {
               href="/contacto"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Contacto
+              {t.nav.contact}
             </Link>
           </nav>
 
