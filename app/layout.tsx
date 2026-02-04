@@ -78,12 +78,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icon.png" },
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-    ],
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: "/descarga.png",
+    shortcut: "/descarga.png",
+    apple: "/descarga.png",
   },
   manifest: "/site.webmanifest",
 }
