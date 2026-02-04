@@ -5,6 +5,7 @@ import { X, ArrowRight, ArrowLeft, Check, Brain, MessageCircle } from "lucide-re
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 import { useCart } from "@/contexts/cart-context"
 import { Logo } from "@/components/logo"
 
@@ -89,8 +90,8 @@ const steps = [
     multiple: true,
   },
 ]
-
 export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalProps) {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [showResult, setShowResult] = useState(false)
@@ -160,6 +161,7 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
     setCurrentStep(0)
     setAnswers({})
     setShowResult(false)
+    router.push("/checkout")
   }
 
   const handleContactStrategist = () => {
