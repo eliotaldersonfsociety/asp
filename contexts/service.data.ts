@@ -54,4 +54,25 @@ export const services = [
     popular: false,
     requiresDiagnostic: true,
   },
+  {
+    id: "victoria-360",
+    icon: "trophy",
+    title: "Victoria 360",
+    subtitle: "Ingeniería de Victoria Total",
+    description:
+      "La solución definitiva para campañas ganadoras: Tráfico masivo con Ads, Landing Pages psicométricas y análisis de intención de voto con IA de última generación.",
+    features: [
+      "Ads de Tráfico Masivo (Meta, Google, TikTok)",
+      "Landing Page con Test de Personalidad Psicográfico",
+      "Detección de Problemáticas por Micro-segmentación",
+      "Análisis de Intención de Voto Basado en Datos IA",
+      "Ingeniería de Mensaje: ¿Qué quiere escuchar el elector?",
+      "Dashboard de Sentimiento Social en Tiempo Real",
+      "Configuración de Respuesta Automatizada IA",
+      "Soporte Estratégico de Elite 24/7",
+    ],
+    price: 15000000,
+    popular: false,
+    requiresDiagnostic: true,
+  },
 ]

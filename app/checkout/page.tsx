@@ -59,7 +59,7 @@ export default function CheckoutPage() {
   const [showGuestForm, setShowGuestForm] = useState(false)
 
   const hasIAPolitica = items.some((item) => item.id === "ia-politica" || item.id === "combo-total")
-  const setupPrice = 300
+  const setupPrice = 400000
   const finalTotal = totalPrice + (hasStrategicSetup ? setupPrice : 0)
 
   // Sync user data to form data when user is logged in
@@ -220,7 +220,7 @@ export default function CheckoutPage() {
                     </div>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
                     <p className="text-accent font-semibold mt-1">
-                      ${item.price.toLocaleString()} USD/mes
+                      ${item.price.toLocaleString()} COP
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -266,7 +266,7 @@ export default function CheckoutPage() {
                   />
                   <div className="flex-1">
                     <Label htmlFor="strategic-setup" className="text-foreground font-medium cursor-pointer">
-                      Agregar Setup Estratégico Inicial (+$300 USD)
+                      Agregar Setup Estratégico Inicial (+400000 COP)
                     </Label>
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
                       Recomendado para maximizar resultados desde el primer día.
@@ -307,21 +307,21 @@ export default function CheckoutPage() {
             <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal mensual:</span>
-                <span className="text-foreground">${totalPrice.toLocaleString()} USD</span>
+                <span className="text-foreground">${totalPrice.toLocaleString()} COP</span>
               </div>
               {hasStrategicSetup && (
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Setup Estratégico (único):</span>
-                  <span className="text-foreground">${setupPrice} USD</span>
+                  <span className="text-foreground">${setupPrice} COP</span>
                 </div>
               )}
               <div className="flex items-center justify-between text-lg pt-2 border-t border-border">
                 <span className="text-muted-foreground">Total a pagar:</span>
-                <span className="font-bold text-foreground">${finalTotal.toLocaleString()} USD</span>
+                <span className="font-bold text-foreground">${finalTotal.toLocaleString()} COP</span>
               </div>
               {hasStrategicSetup && (
                 <p className="text-xs text-muted-foreground">
-                  * El Setup Estratégico es un pago único. Los ${totalPrice.toLocaleString()} USD se cobrarán mensualmente.
+                  * El Setup Estratégico es un pago único. Los ${totalPrice.toLocaleString()} COP se cobrarán mensualmente.
                 </p>
               )}
             </div>

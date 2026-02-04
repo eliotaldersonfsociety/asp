@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   Check,
   ClipboardCheck,
+  Trophy,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/contexts/cart-context"
@@ -17,6 +18,7 @@ const iconMap: Record<string, any> = {
   brain: Brain,
   users: Users,
   zap: Zap,
+  trophy: Trophy,
 }
 
 export function ServiceCard({ service }: { service: any }) {
@@ -104,7 +106,7 @@ export function ServiceCard({ service }: { service: any }) {
         <div className="mt-auto">
           <div className="mb-4">
             <span className="text-3xl font-bold">${service.price}</span>
-            <span className="text-muted-foreground"> USD/mes</span>
+            <span className="text-muted-foreground"> COP</span>
           </div>
 
           <div className="space-y-2">

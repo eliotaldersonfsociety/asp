@@ -70,12 +70,12 @@ export default function OrderSuccessPage() {
                     <p className="font-medium text-foreground">{item.name}</p>
                     <p className="text-sm text-muted-foreground">Cantidad: {item.quantity}</p>
                   </div>
-                  <p className="font-medium text-foreground">${(item.price * item.quantity).toLocaleString()} USD</p>
+                  <p className="font-medium text-foreground">${(item.price * item.quantity).toLocaleString()} COP</p>
                 </div>
               ))}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="font-semibold text-foreground">Total</p>
-                <p className="text-xl font-bold text-accent">${orderDetails?.total.toLocaleString()} USD</p>
+                <p className="text-xl font-bold text-accent">${orderDetails?.total.toLocaleString()} COP</p>
               </div>
             </CardContent>
           </Card>
