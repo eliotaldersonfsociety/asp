@@ -52,9 +52,9 @@ export const metadata: Metadata = {
       "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Servicio profesional de crecimiento estratégico. Especialistas en campañas políticas y comunicación digital.",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/og-image.webp",
+        width: 1024,
+        height: 1024,
         alt: "Aumento de Seguidores",
       },
     ],
