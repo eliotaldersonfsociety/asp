@@ -105,7 +105,7 @@ export function ServiceCard({ service }: { service: any }) {
         {/* PRICE */}
         <div className="mt-auto">
           <div className="mb-4">
-            <span className="text-3xl font-bold">${service.price}</span>
+            <span className="text-3xl font-bold">${service.price.toLocaleString()}</span>
             <span className="text-muted-foreground"> COP</span>
           </div>
 

@@ -266,7 +266,7 @@ export default function CheckoutPage() {
                   />
                   <div className="flex-1">
                     <Label htmlFor="strategic-setup" className="text-foreground font-medium cursor-pointer">
-                      Agregar Setup Estratégico Inicial (+400000 COP)
+                      Agregar Setup Estratégico Inicial (+400.000 COP)
                     </Label>
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
                       Recomendado para maximizar resultados desde el primer día.
@@ -312,7 +312,7 @@ export default function CheckoutPage() {
               {hasStrategicSetup && (
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Setup Estratégico (único):</span>
-                  <span className="text-foreground">${setupPrice} COP</span>
+                  <span className="text-foreground">${setupPrice.toLocaleString()} COP</span>
                 </div>
               )}
               <div className="flex items-center justify-between text-lg pt-2 border-t border-border">
