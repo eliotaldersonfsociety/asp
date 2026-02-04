@@ -49,7 +49,7 @@ export function HeroSection() {
 
             <Button size="lg" variant="outline" className="gap-2 bg-transparent" asChild>
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/573161744421"
                 target="_blank"
                 rel="noopener noreferrer"
               >

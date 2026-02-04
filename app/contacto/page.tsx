@@ -118,8 +118,15 @@ export default function ContactoPage() {
                   <div className="min-w-0">
                     <h3 className="text-base md:text-lg font-bold mb-1">Consultoría Rápida</h3>
                     <p className="text-xs md:text-sm text-muted-foreground mb-2">Soporte estratégico directo para casos urgentes.</p>
-                    <p className="text-foreground font-semibold text-sm md:text-base">Discord para clientes premium</p>
-                    <p className="text-[10px] md:text-xs text-muted-foreground mt-1 underline cursor-pointer hover:text-accent">Comunidad VIP de estrategia</p>
+                    <a 
+                      href="https://wa.me/573161744421" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent font-semibold text-sm md:text-base hover:underline"
+                    >
+                      WhatsApp Estratégico
+                    </a>
+                    <p className="text-[10px] md:text-xs text-muted-foreground mt-1">Atención inmediata de consultores</p>
                   </div>
                 </CardContent>
               </Card>
@@ -248,10 +255,11 @@ export default function ContactoPage() {
         <section className="text-center mt-24">
           <p className="text-muted-foreground mb-2 font-medium">¿Necesitas un plan personalizado?</p>
           <Link 
-            href="mailto:contacto@aumentodeseguidores.com" 
+            href="https://wa.me/573161744421" 
+            target="_blank"
             className="text-accent font-bold text-lg hover:underline underline-offset-8 decoration-2"
           >
-            Habla con nuestro equipo de estrategia
+            Habla con nuestro equipo de estrategia en WhatsApp
           </Link>
         </section>
       </main>

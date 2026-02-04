@@ -7,9 +7,9 @@ const faqs = [
       "Sí. Utilizamos métodos orgánicos y estratégicos que respetan los términos de servicio de cada plataforma para garantizar la seguridad total de tu cuenta.",
   },
   {
-    question: "¿Los seguidores son reales?",
+    question: "¿Los seguidores interactuan?",
     answer:
-      "Trabajamos con una red de usuarios reales y perfiles de alta calidad interesados en diferentes nichos, lo que garantiza un crecimiento con apariencia natural.",
+      "Trabajamos con una red de perfiles de alta calidad interesados en diferentes nichos, lo que garantiza un crecimiento con apariencia natural.",
   },
   {
     question: "¿Cómo funciona el servicio de IA Política?",

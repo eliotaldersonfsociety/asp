@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, ArrowRight, Package, Clock, Mail } from "lucide-react"
+import { CheckCircle, ArrowRight, Package, Clock, Mail, MessageCircle } from "lucide-react"
 import { Header } from "@/components/header"
 
 import { getOrderByIdAction } from "@/lib/actions/orders"
@@ -128,14 +128,27 @@ export default function OrderSuccessPage() {
 
           <Card className="border-border bg-secondary/50 mb-8">
             <CardContent className="pt-6">
-              <div className="flex items-center gap-4">
-                <Mail className="w-8 h-8 text-accent" />
-                <div>
-                  <p className="font-medium text-foreground">Necesitas ayuda?</p>
-                  <p className="text-sm text-muted-foreground">
-                    Contactanos por WhatsApp o email y te responderemos lo antes posible.
-                  </p>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-4 text-left">
+                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
+                    <MessageCircle className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">¿Necesitas ayuda inmediata?</p>
+                    <p className="text-sm text-muted-foreground">
+                      Contáctanos por WhatsApp para agilizar el proceso de activación.
+                    </p>
+                  </div>
                 </div>
+                <Button variant="outline" className="shrink-0 border-accent text-accent hover:bg-accent hover:text-accent-foreground" asChild>
+                  <a 
+                    href={`https://wa.me/573161744421?text=Hola,%20acabo%20de%20hacer%20un%20pedido%20(ID:%20${orderId})%20y%20me%20gustaria%20confirmar%20los%20proximos%20pasos.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Hablar por WhatsApp
+                  </a>
+                </Button>
               </div>
             </CardContent>
           </Card>

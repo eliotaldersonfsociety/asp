@@ -154,7 +154,7 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
     const message = encodeURIComponent(
       `Hola, complete el diagnostico de IA Politica y me gustaria hablar con un estratega.\n\nPerfil: ${answers.profile}\nEtapa: ${answers.stage}\nObjetivo: ${Array.isArray(answers.objective) ? answers.objective.join(", ") : answers.objective}\nTerritorio: ${answers.territory}`
     )
-    window.open(`https://wa.me/1234567890?text=${message}`, "_blank")
+    window.open(`https://wa.me/573161744421?text=${message}`, "_blank")
   }
 
   const handleClose = () => {

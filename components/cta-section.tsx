@@ -41,7 +41,7 @@ export function CTASection() {
             </p>
             <Button size="lg" variant="outline" className="w-full gap-2 bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground" asChild>
               <a
-                href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20agendar%20un%20diagnostico%20estrategico%20para%20mi%20campana%20politica"
+                href="https://wa.me/573161744421?text=Hola,%20me%20interesa%20agendar%20un%20diagnostico%20estrategico%20para%20mi%20campana%20politica"
                 target="_blank"
                 rel="noopener noreferrer"
               >
