@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL("https://aumentodeseguidores.com"),
   title: {
-    default: "Aumento de Seguidores | Crecimiento Real en Redes Sociales",
+    default: "Aumento de Seguidores y Politica | Crecimiento Real en Redes Sociales con IA",
     template: "%s | Aumento de Seguidores",
   },
   description:
-    "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Servicio profesional de crecimiento estratégico para Instagram, TikTok, Facebook y más.",
+    "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Servicio profesional de crecimiento estratégico para Instagram, TikTok, Facebook y más. Especialistas en campañas políticas y comunicación estratégica.",
   keywords: [
     "aumento de seguidores",
     "comprar seguidores",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: "https://aumentodeseguidores.com",
     siteName: "Aumento de Seguidores",
-    title: "Aumento de Seguidores | Crecimiento Real en Redes Sociales",
+    title: "Aumento de Seguidores y Politica | Crecimiento Real en Redes Sociales con IA",
     description:
-      "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Servicio profesional de crecimiento estratégico.",
+      "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Servicio profesional de crecimiento estratégico. Especialistas en campañas políticas y comunicación digital.",
     images: [
       {
         url: "/og-image.png",
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aumento de Seguidores | Crecimiento Real en Redes Sociales",
+    title: "Aumento de Seguidores y Politica | Crecimiento Real en Redes Sociales con IA",
     description:
-      "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura.",
+      "Aumenta tus seguidores, likes, comentarios y viewers en vivo de forma orgánica y segura. Especialistas en campañas políticas y comunicación estratégica.",
     images: ["/og-image.png"],
     creator: "@aumentoseguidores",
   },
