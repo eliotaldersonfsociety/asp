@@ -1,4 +1,4 @@
-import { Flag, Shield, MapPin, Radio, Zap } from "lucide-react"
+import { Flag, Shield, MapPin, Radio, Zap, Eye, Activity, Target, Users } from "lucide-react"
 
 const useCases = [
   {
@@ -30,6 +30,30 @@ const useCases = [
     title: "Crecimiento Rapido de Autoridad",
     description: "Escala tu perfil de 0 a referente en semanas. Ideal para influencers y marcas personales.",
     tag: "SMM",
+  },
+  {
+    icon: Eye,
+    title: "Monitoreo de Oposición",
+    description: "Vigila los movimientos de tus adversarios en tiempo real. Analiza sus debilidades y anticipate a sus jugadas.",
+    tag: "Politica",
+  },
+  {
+    icon: Activity,
+    title: "Sentimiento Social 24/7",
+    description: "Detecta cambios en el humor social y ajusta el rumbo de tu discurso antes de que se convierta en tendencia.",
+    tag: "IA",
+  },
+  {
+    icon: Target,
+    title: "Segmentacion Psicografica",
+    description: "Microsegmentamos tus mensajes segun la personalidad y valores especificos de cada grupo de ciudadanos.",
+    tag: "IA",
+  },
+  {
+    icon: Users,
+    title: "Militancia Digital Activa",
+    description: "Transforma simpatizantes en activistas digitales. Coordinamos bases para amplificar mensajes y defensa de marca.",
+    tag: "Politica",
   },
 ]
 

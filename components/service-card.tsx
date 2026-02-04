@@ -9,6 +9,11 @@ import {
   Check,
   ClipboardCheck,
   Trophy,
+  ShieldAlert,
+  Star,
+  Search,
+  Megaphone,
+  UserPlus,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/contexts/cart-context"
@@ -19,6 +24,11 @@ const iconMap: Record<string, any> = {
   users: Users,
   zap: Zap,
   trophy: Trophy,
+  "shield-alert": ShieldAlert,
+  star: Star,
+  search: Search,
+  megaphone: Megaphone,
+  "user-plus": UserPlus,
 }
 
 export function ServiceCard({ service }: { service: any }) {
