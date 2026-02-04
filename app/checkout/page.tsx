@@ -58,7 +58,19 @@ export default function CheckoutPage() {
   const [filePreview, setFilePreview] = useState<string | null>(null)
   const [showGuestForm, setShowGuestForm] = useState(false)
 
-  const hasIAPolitica = items.some((item) => item.id === "ia-politica" || item.id === "combo-total")
+  // Formateador de moneda consistente para Colombia
+  const formatCOP = (amount: number) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+    }).format(amount).replace('COP', '').trim() + ' COP'
+  }
+
+  // Identificamos si hay servicios que requieren diagnóstico/evaluación estratégica
+  const diagnosticServiceIds = ["ia-politica", "combo-total", "victoria-360", "gestion-crisis", "marca-elite", "monitor-oposicion"]
+  const hasStrategicService = items.some((item) => diagnosticServiceIds.includes(item.id))
+  
   const setupPrice = 400000
   const finalTotal = totalPrice + (hasStrategicSetup ? setupPrice : 0)
 
@@ -214,13 +226,13 @@ export default function CheckoutPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <h3 className="font-medium text-foreground">{item.name}</h3>
-                      {(item.id === "ia-politica" || item.id === "combo-total") && (
-                        <span className="px-2 py-0.5 rounded text-xs bg-accent/20 text-accent">IA</span>
+                      {diagnosticServiceIds.includes(item.id) && (
+                        <span className="px-2 py-0.5 rounded text-xs bg-accent/20 text-accent">IA / Estratégico</span>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
-                    <p className="text-accent font-semibold mt-1">
-                      ${item.price.toLocaleString()} COP
+                    <p className="text-accent font-bold mt-1 text-lg">
+                      {formatCOP(item.price)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -255,7 +267,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Strategic Setup Upsell */}
-            {hasIAPolitica && (
+            {hasStrategicService && (
               <div className="mt-6 p-4 rounded-xl bg-accent/10 border border-accent/30">
                 <div className="flex items-start gap-4">
                   <Checkbox
@@ -266,7 +278,7 @@ export default function CheckoutPage() {
                   />
                   <div className="flex-1">
                     <Label htmlFor="strategic-setup" className="text-foreground font-medium cursor-pointer">
-                      Agregar Setup Estratégico Inicial (+400.000 COP)
+                      Agregar Setup Estratégico Inicial (+{formatCOP(setupPrice)})
                     </Label>
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
                       Recomendado para maximizar resultados desde el primer día.
@@ -290,14 +302,14 @@ export default function CheckoutPage() {
             )}
 
             {/* Order Status Info */}
-            {hasIAPolitica && (
+            {hasStrategicService && (
               <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border">
                 <div className="flex items-center gap-3 mb-2">
                   <Clock className="w-5 h-5 text-yellow-500" />
                   <span className="font-medium text-foreground">Estado del pedido</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Los servicios de IA Política requieren evaluación estratégica previa.
+                  Los servicios estratégicos requieren una evaluación previa exhaustiva.
                   Tu orden quedará en estado <span className="text-yellow-500 font-medium">"En proceso de evaluación"</span> hasta completar la auditoría inicial.
                 </p>
               </div>
@@ -307,21 +319,21 @@ export default function CheckoutPage() {
             <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal mensual:</span>
-                <span className="text-foreground">${totalPrice.toLocaleString()} COP</span>
+                <span className="text-foreground font-medium">{formatCOP(totalPrice)}</span>
               </div>
               {hasStrategicSetup && (
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Setup Estratégico (único):</span>
-                  <span className="text-foreground">${setupPrice.toLocaleString()} COP</span>
+                  <span className="text-foreground font-medium">{formatCOP(setupPrice)}</span>
                 </div>
               )}
-              <div className="flex items-center justify-between text-lg pt-2 border-t border-border">
-                <span className="text-muted-foreground">Total a pagar:</span>
-                <span className="font-bold text-foreground">${finalTotal.toLocaleString()} COP</span>
+              <div className="flex items-center justify-between text-xl pt-4 border-t border-border">
+                <span className="text-foreground font-semibold">Total a pagar:</span>
+                <span className="font-black text-accent">{formatCOP(finalTotal)}</span>
               </div>
               {hasStrategicSetup && (
-                <p className="text-xs text-muted-foreground">
-                  * El Setup Estratégico es un pago único. Los ${totalPrice.toLocaleString()} COP se cobrarán mensualmente.
+                <p className="text-xs text-muted-foreground italic">
+                  * El Setup Estratégico es un pago único por cuenta. La suscripción de {formatCOP(totalPrice)} se cobrará mensualmente.
                 </p>
               )}
             </div>

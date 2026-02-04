@@ -11,6 +11,12 @@ import { Logo } from "@/components/logo"
 interface DiagnosticModalProps {
   isOpen: boolean
   onClose: () => void
+  service?: {
+    id: string
+    title: string
+    subtitle: string
+    price: number
+  }
 }
 
 const steps = [
@@ -84,11 +90,17 @@ const steps = [
   },
 ]
 
-export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
+export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalProps) {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [showResult, setShowResult] = useState(false)
   const { addToCart, setDiagnosticData } = useCart()
+
+  // Default values if service is not provided (fallback)
+  const serviceTitle = service?.title || "IA Política"
+  const serviceSubtitle = service?.subtitle || "Posicionamiento Estratégico"
+  const servicePrice = service?.price || 300000
+  const serviceId = service?.id || "ia-politica"
 
   if (!isOpen) return null
 
@@ -139,10 +151,10 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
   const handleAddToCart = () => {
     setDiagnosticData(answers)
     addToCart({
-      id: "ia-politica",
-      name: "IA Politica",
-      description: "Posicionamiento Estrategico",
-      price: 2999,
+      id: serviceId,
+      name: serviceTitle,
+      description: serviceSubtitle,
+      price: servicePrice,
     })
     onClose()
     setCurrentStep(0)
@@ -152,7 +164,7 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
 
   const handleContactStrategist = () => {
     const message = encodeURIComponent(
-      `Hola, complete el diagnostico de IA Politica y me gustaria hablar con un estratega.\n\nPerfil: ${answers.profile}\nEtapa: ${answers.stage}\nObjetivo: ${Array.isArray(answers.objective) ? answers.objective.join(", ") : answers.objective}\nTerritorio: ${answers.territory}`
+      `Hola, completé el diagnóstico de ${serviceTitle} y me gustaría hablar con un estratega.\n\nPerfil: ${answers.profile}\nEtapa: ${answers.stage}\nObjetivo: ${Array.isArray(answers.objective) ? answers.objective.join(", ") : answers.objective}\nTerritorio: ${answers.territory}`
     )
     window.open(`https://wa.me/573161744421?text=${message}`, "_blank")
   }
@@ -176,7 +188,7 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
                 <Logo />
               </div>
               <div>
-                <h2 className="font-semibold text-foreground">Diagnostico IA Politica</h2>
+                <h2 className="font-semibold text-foreground">Diagnóstico {serviceTitle}</h2>
                 <p className="text-sm text-muted-foreground">
                   {showResult ? "Resultado" : `Paso ${currentStep + 1} de ${steps.length}`}
                 </p>
@@ -209,7 +221,7 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">Resultado del Diagnostico</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Segun tu informacion, la <span className="text-accent font-medium">IA Politica</span> si puede ayudarte a mejorar tu percepcion digital y optimizar tu estrategia de comunicacion.
+                Segun tu informacion, el servicio de <span className="text-accent font-medium">{serviceTitle}</span> si puede ayudarte a mejorar tu percepcion digital y optimizar tu estrategia de comunicacion.
               </p>
               
               <div className="bg-secondary/50 rounded-xl p-4 mb-6 text-left">
@@ -229,7 +241,7 @@ export function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
               <div className="flex flex-col gap-3">
                 <Button onClick={handleAddToCart} className="w-full">
                   <Brain className="w-4 h-4 mr-2" />
-                  Continuar con IA Politica
+                  Continuar con {serviceTitle}
                 </Button>
                 <Button variant="outline" onClick={handleContactStrategist} className="w-full bg-transparent">
                   <MessageCircle className="w-4 h-4 mr-2" />

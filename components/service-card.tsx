@@ -154,6 +154,12 @@ export function ServiceCard({ service }: { service: any }) {
       <DiagnosticModal
         isOpen={showDiagnostic}
         onClose={() => setShowDiagnostic(false)}
+        service={{
+          id: service.id,
+          title: service.title,
+          subtitle: service.subtitle,
+          price: service.price,
+        }}
       />
     </>
   )
