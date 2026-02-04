@@ -12,7 +12,7 @@ export function ServicesSection() {
 
   return (
     <section id="servicios" className="py-20 md:py-32 bg-secondary/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -24,7 +24,7 @@ export function ServicesSection() {
         </div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
