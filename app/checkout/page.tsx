@@ -58,7 +58,7 @@ export default function CheckoutPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [filePreview, setFilePreview] = useState<string | null>(null)
   const [showGuestForm, setShowGuestForm] = useState(false)
-  const { t, formatPrice } = useLanguage()
+  const { t, formatPrice, language } = useLanguage()
 
   // Identificamos si hay servicios que requieren diagnóstico/evaluación estratégica
   const diagnosticServiceIds = ["ia-politica", "combo-total", "victoria-360", "gestion-crisis", "marca-elite", "monitor-oposicion"]
@@ -462,93 +462,123 @@ export default function CheckoutPage() {
 
                 {/* Sección Medios de Pago */}
                 <div className="border-t border-border pt-6">
-                    <h3 className="text-lg font-medium text-foreground mb-4">Medios de Pago</h3>
+                    <h3 className="text-lg font-medium text-foreground mb-4">{t.checkout.paymentMethods}</h3>
                     <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="breb">
+                    {/* PayPal - Solo en inglés */}
+                    {language === 'en' && (
+                      <AccordionItem value="paypal">
                         <AccordionTrigger>
-                        <div className="flex items-center gap-2">
-                            <img src="/breb.svg" alt="logo-breb" className="w-12 h-12" />
-                        </div>
+                          <div className="flex items-center gap-2">
+                            <img src="/paypal.svg" alt="logo-paypal" className="w-12 h-12" />
+                          </div>
                         </AccordionTrigger>
                         <AccordionContent>
-                        <div className="flex items-center gap-4">
-                            <div className="w-24 h-24 bg-white p-2 rounded-lg border">
-                            <QrCode className="w-full h-full" />
-                            </div>
-                            <div className="space-y-2">
-                            <p className="text-sm font-bold">Número de cuenta:</p>
-                            <p className="text-sm font-bold">3006144416</p>
+                          <div className="space-y-4">
+                            <p className="text-sm font-bold">PayPal Email:</p>
+                            <p className="text-sm font-bold text-accent">bucarmarketing@gmail.com</p>
                             <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => copyToClipboard("1234 5678 9012 3456")}
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => copyToClipboard("bucarmarketing@gmail.com")}
                             >
-                                <Copy className="w-4 h-4 mr-2" />
-                                Copiar
+                              <Copy className="w-4 h-4 mr-2" />
+                              Copy
                             </Button>
-                            </div>
-                        </div>
+                          </div>
                         </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="nequi">
-                        <AccordionTrigger>
-                        <div className="flex items-center gap-2">
-                            <img
-                            src={theme === 'dark' ? "/nequi2.svg" : "/nequi.svg"}
-                            alt="logo-nequi"
-                            className="w-12 h-12"
-                            />
-                        </div>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                        <div className="flex items-center gap-4">
-                            <div className="w-24 h-24 bg-white p-2 rounded-lg border">
-                            <QrCode className="w-full h-full" />
+                      </AccordionItem>
+                    )}
+                    {/* Métodos locales - Solo en español */}
+                    {language === 'es' && (
+                      <>
+                        <AccordionItem value="breb">
+                          <AccordionTrigger>
+                            <div className="flex items-center gap-2">
+                              <img src="/breb.svg" alt="logo-breb" className="w-12 h-12" />
                             </div>
-                            <div className="space-y-2">
-                            <p className="text-sm font-bold">Número de cuenta:</p>
-                            <p className="text-sm font-bold">3219412929</p>
-                            <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => copyToClipboard("9876 5432 1098 7654")}
-                            >
-                                <Copy className="w-4 h-4 mr-2" />
-                                Copiar
-                            </Button>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="flex items-center gap-4">
+                              <div className="w-24 h-24 bg-white p-2 rounded-lg border">
+                                <QrCode className="w-full h-full" />
+                              </div>
+                              <div className="space-y-2">
+                                <p className="text-sm font-bold">{t.checkout.accountNumber}</p>
+                                <p className="text-sm font-bold">3006144416</p>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => copyToClipboard("3006144416")}
+                                >
+                                  <Copy className="w-4 h-4 mr-2" />
+                                  {t.checkout.copy}
+                                </Button>
+                              </div>
                             </div>
-                        </div>
-                        </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="daviplata">
-                        <AccordionTrigger>
-                        <div className="flex items-center gap-2">
-                            <img src="/daviplata.svg" alt="logo-daviplata" className="w-12 h-12" />
-                        </div>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                        <div className="flex items-center gap-4">
-                            <div className="w-24 h-24 bg-white p-2 rounded-lg border">
-                            <QrCode className="w-full h-full" />
+                          </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="nequi">
+                          <AccordionTrigger>
+                            <div className="flex items-center gap-2">
+                              <img
+                                src={theme === 'dark' ? "/nequi2.svg" : "/nequi.svg"}
+                                alt="logo-nequi"
+                                className="w-12 h-12"
+                              />
                             </div>
-                            <div className="space-y-2">
-                            <p className="text-sm font-bold">Número de cuenta:</p>
-                            <p className="text-sm font-bold">3006144416</p>
-                            <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => copyToClipboard("5678 1234 9012 3456")}
-                            >
-                                <Copy className="w-4 h-4 mr-2" />
-                                Copiar
-                            </Button>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="flex items-center gap-4">
+                              <div className="w-24 h-24 bg-white p-2 rounded-lg border">
+                                <QrCode className="w-full h-full" />
+                              </div>
+                              <div className="space-y-2">
+                                <p className="text-sm font-bold">{t.checkout.accountNumber}</p>
+                                <p className="text-sm font-bold">3219412929</p>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => copyToClipboard("3219412929")}
+                                >
+                                  <Copy className="w-4 h-4 mr-2" />
+                                  {t.checkout.copy}
+                                </Button>
+                              </div>
                             </div>
-                        </div>
-                        </AccordionContent>
-                    </AccordionItem>
+                          </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="daviplata">
+                          <AccordionTrigger>
+                            <div className="flex items-center gap-2">
+                              <img src="/daviplata.svg" alt="logo-daviplata" className="w-12 h-12" />
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="flex items-center gap-4">
+                              <div className="w-24 h-24 bg-white p-2 rounded-lg border">
+                                <QrCode className="w-full h-full" />
+                              </div>
+                              <div className="space-y-2">
+                                <p className="text-sm font-bold">{t.checkout.accountNumber}</p>
+                                <p className="text-sm font-bold">3006144416</p>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => copyToClipboard("3006144416")}
+                                >
+                                  <Copy className="w-4 h-4 mr-2" />
+                                  {t.checkout.copy}
+                                </Button>
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </>
+                    )}
                     </Accordion>
                 </div>
 

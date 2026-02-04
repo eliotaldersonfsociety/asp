@@ -27,10 +27,10 @@ export function ProofModal({ imageUrl, isOpen, onClose }: ProofModalProps) {
           <div>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <ZoomIn className="w-5 h-5 text-accent" />
-              Comprobante de Pago
+              Payment Receipt
             </DialogTitle>
             <DialogDescription>
-              Previsualización del recibo enviado por el cliente.
+              Preview of the receipt sent by the customer.
             </DialogDescription>
           </div>
         </DialogHeader>
@@ -38,14 +38,14 @@ export function ProofModal({ imageUrl, isOpen, onClose }: ProofModalProps) {
         <div className="flex-1 relative bg-muted/30 rounded-xl border border-dashed border-border flex items-center justify-center overflow-auto p-2">
           <img
             src={imageUrl}
-            alt="Comprobante de Pago"
+            alt="Payment Receipt"
             className="max-w-full max-h-full object-contain shadow-2xl rounded-lg animate-in zoom-in-95 duration-300"
           />
         </div>
         
         <div className="mt-4 flex justify-end">
           <Button onClick={onClose} variant="secondary">
-            Cerrar Vista
+            Close View
           </Button>
         </div>
       </DialogContent>

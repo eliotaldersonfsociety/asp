@@ -69,7 +69,7 @@ export function ServiceCard({ service }: { service: any }) {
         {/* BADGES */}
         {service.popular && (
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm">
-            Mas Popular
+            {t.services.popular}
           </div>
         )}
 

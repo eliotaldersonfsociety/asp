@@ -3,27 +3,27 @@ import { Users, ThumbsUp, MessageSquare, Radio } from "lucide-react"
 const benefits = [
   {
     icon: Users,
-    title: "Seguidores Reales",
+    title: "Real Followers",
     description:
-      "Aumenta tu base de seguidores con cuentas reales y activas que mejoran tu credibilidad y alcance orgánico.",
+      "Increase your follower base with real and active accounts that improve your credibility and organic reach.",
   },
   {
     icon: ThumbsUp,
-    title: "Likes Genuinos",
+    title: "Genuine Likes",
     description:
-      "Incrementa el engagement de tus publicaciones con likes de usuarios reales que impulsan el algoritmo.",
+      "Increase your post engagement with likes from real users that boost the algorithm.",
   },
   {
     icon: MessageSquare,
-    title: "Comentarios Activos",
+    title: "Active Comments",
     description:
-      "Genera conversación en tus publicaciones con comentarios relevantes que aumentan la interacción.",
+      "Generate conversation on your posts with relevant comments that increase interaction.",
   },
   {
     icon: Radio,
-    title: "Viewers en Vivo",
+    title: "Live Viewers",
     description:
-      "Llena tus transmisiones en vivo con espectadores reales que interactuan y mejoran tu posicionamiento.",
+      "Fill your live streams with real viewers who interact and improve your positioning.",
   },
 ]
 
@@ -32,9 +32,9 @@ export function BenefitsSection() {
     <section id="beneficios" className="py-20 md:py-32 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Nuestros Servicios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Todo lo que necesitas para crecer en redes sociales
+            Everything you need to grow on social media
           </p>
         </div>
 

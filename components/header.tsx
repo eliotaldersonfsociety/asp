@@ -4,9 +4,10 @@ import Link from "next/link"
 import { Logo } from "@/components/logo"
 import { HeaderMobile } from "@/components/header-mobile.client"
 import { useLanguage } from "@/contexts/language-context"
+import { Button } from "@/components/ui/button"
 
 export function Header() {
-  const { t } = useLanguage()
+  const { t, language, setLanguage } = useLanguage()
 
   const navItems = [
     [t.nav.services, "/#servicios"],
@@ -21,11 +22,11 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Logo />
             <span className="font-semibold text-sm text-foreground">
-              Aumento de Seguidores
+              {t.header.brand}
             </span>
           </Link>
 
-          {/* NAV DESKTOP (CLIENT) */}
+          {/* NAV DESKTOP */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map(([label, href]) => (
               <a
@@ -44,8 +45,21 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* UNIVERSAL ACTIONS & MENU */}
-          <HeaderMobile />
+          {/* LANGUAGE SELECTOR & ACTIONS */}
+          <div className="flex items-center gap-2">
+            {/* LANGUAGE TOGGLE - Visible in desktop */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="font-bold w-10 h-10 rounded-full"
+              onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+            >
+              {language === 'es' ? 'EN' : 'ES'}
+            </Button>
+
+            {/* UNIVERSAL ACTIONS & MENU */}
+            <HeaderMobile />
+          </div>
         </div>
       </div>
     </header>

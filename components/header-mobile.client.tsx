@@ -7,6 +7,7 @@ import { Menu, X, ShoppingCart, Sun, Moon, User as UserIcon } from "lucide-react
 import { useTheme } from "next-themes"
 import { useAuth } from "@/contexts/auth-context"
 import { useCart } from "@/contexts/cart-context"
+import { useLanguage } from "@/contexts/language-context"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,6 +23,7 @@ export function HeaderMobile() {
   const { resolvedTheme, setTheme } = useTheme()
   const { user, logout, isLoading } = useAuth()
   const { totalItems } = useCart()
+  const { t } = useLanguage()
 
   useEffect(() => {
     setMounted(true)
@@ -36,16 +38,6 @@ export function HeaderMobile() {
 
   return (
     <div className="flex items-center gap-2">
-      {/* LANGUAGE TOGGLE */}
-      <Button
-        variant="ghost"
-        size="sm"
-        className="font-bold w-10 h-10 rounded-full"
-        onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-      >
-        {language === 'es' ? 'EN' : 'ES'}
-      </Button>
-
       {/* THEME TOGGLE */}
       <Button
         variant="ghost"
@@ -137,7 +129,7 @@ export function HeaderMobile() {
                 className="text-sm px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
                 onClick={() => setOpen(false)}
               >
-                {label}
+                {label as string}
               </a>
             ))}
             <Link

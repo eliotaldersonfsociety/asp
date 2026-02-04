@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { useCart } from "@/contexts/cart-context"
 import { Logo } from "@/components/logo"
+import { useLanguage } from "@/contexts/language-context"
 
 interface DiagnosticModalProps {
   isOpen: boolean
@@ -20,88 +21,94 @@ interface DiagnosticModalProps {
   }
 }
 
-const steps = [
-  {
-    title: "Perfil del Cliente",
-    question: "Cual describe mejor tu situacion?",
-    options: [
-      "Candidato politico",
-      "Equipo de campana",
-      "Consultor politico",
-      "Agencia de comunicacion",
-      "Otro",
-    ],
-    key: "profile",
-  },
-  {
-    title: "Etapa de la Campana",
-    question: "En que etapa te encuentras?",
-    options: [
-      "Precampana",
-      "Campana activa",
-      "Crisis reputacional",
-      "Posicionamiento a largo plazo",
-    ],
-    key: "stage",
-  },
-  {
-    title: "Objetivo Principal",
-    question: "Que necesitas mejorar con urgencia?",
-    options: [
-      "Percepcion publica",
-      "Engagement en redes",
-      "Control de narrativa",
-      "Lanzamiento de candidatura",
-      "Monitoreo de comentarios",
-    ],
-    key: "objective",
-    multiple: true,
-  },
-  {
-    title: "Redes Clave",
-    question: "En que redes necesitas apoyo?",
-    options: ["Facebook", "Instagram", "TikTok", "X (Twitter)", "YouTube", "WhatsApp"],
-    key: "networks",
-    multiple: true,
-  },
-  {
-    title: "Territorio",
-    question: "En que pais / region es la campana?",
-    type: "input",
-    key: "territory",
-  },
-  {
-    title: "Presencia Digital",
-    question: "Actualmente tu presencia digital es:",
-    options: ["Baja", "Media", "Alta"],
-    key: "presence",
-  },
-  {
-    title: "Expectativa",
-    question: "Que esperas de la IA Politica?",
-    options: [
-      "Reportes y analisis",
-      "Recomendaciones estrategicas",
-      "Optimizacion de mensajes",
-      "Amplificacion estrategica",
-      "Todo lo anterior",
-    ],
-    key: "expectation",
-    multiple: true,
-  },
-]
 export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalProps) {
   const router = useRouter()
+  const { t, formatPrice } = useLanguage()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [showResult, setShowResult] = useState(false)
   const { addToCart, setDiagnosticData } = useCart()
 
   // Default values if service is not provided (fallback)
-  const serviceTitle = service?.title || "IA Política"
-  const serviceSubtitle = service?.subtitle || "Posicionamiento Estratégico"
+  const serviceTitle = service?.title || "Political AI"
+  const serviceSubtitle = service?.subtitle || "Strategic Positioning"
   const servicePrice = service?.price || 300000
   const serviceId = service?.id || "ia-politica"
+
+  const steps = [
+    {
+      title: t.diagnostic.title,
+      question: t.diagnostic.question,
+      options: [
+        t.diagnostic.options.politicalCandidate,
+        t.diagnostic.options.campaignTeam,
+        t.diagnostic.options.politicalConsultant,
+        t.diagnostic.options.communicationAgency,
+        t.diagnostic.options.other,
+      ],
+      key: "profile",
+    },
+    {
+      title: t.diagnostic.stageTitle,
+      question: t.diagnostic.stageQuestion,
+      options: [
+        t.diagnostic.stageOptions.preCampaign,
+        t.diagnostic.stageOptions.activeCampaign,
+        t.diagnostic.stageOptions.reputationalCrisis,
+        t.diagnostic.stageOptions.longTermPositioning,
+      ],
+      key: "stage",
+    },
+    {
+      title: t.diagnostic.objectiveTitle,
+      question: t.diagnostic.objectiveQuestion,
+      options: [
+        t.diagnostic.objectiveOptions.publicPerception,
+        t.diagnostic.objectiveOptions.socialEngagement,
+        t.diagnostic.objectiveOptions.narrativeControl,
+        t.diagnostic.objectiveOptions.candidacyLaunch,
+        t.diagnostic.objectiveOptions.commentMonitoring,
+      ],
+      key: "objective",
+      multiple: true,
+    },
+    {
+      title: t.diagnostic.networksTitle,
+      question: t.diagnostic.networksQuestion,
+      options: ["Facebook", "Instagram", "TikTok", "X (Twitter)", "YouTube", "WhatsApp"],
+      key: "networks",
+      multiple: true,
+    },
+    {
+      title: t.diagnostic.territoryTitle,
+      question: t.diagnostic.territoryQuestion,
+      type: "input",
+      key: "territory",
+    },
+    {
+      title: t.diagnostic.presenceTitle,
+      question: t.diagnostic.presenceQuestion,
+      options: [
+        t.diagnostic.presenceOptions.low,
+        t.diagnostic.presenceOptions.medium,
+        t.diagnostic.presenceOptions.high,
+      ],
+      key: "presence",
+    },
+    {
+      title: t.diagnostic.expectationTitle,
+      question: t.diagnostic.expectationQuestion,
+      options: [
+        t.diagnostic.expectationOptions.reports,
+        t.diagnostic.expectationOptions.recommendations,
+        t.diagnostic.expectationOptions.messageOptimization,
+        t.diagnostic.expectationOptions.strategicAmplification,
+        t.diagnostic.expectationOptions.all,
+      ],
+      key: "expectation",
+      multiple: true,
+    },
+  ]
 
   if (!isOpen) return null
 
@@ -166,7 +173,7 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
 
   const handleContactStrategist = () => {
     const message = encodeURIComponent(
-      `Hola, completé el diagnóstico de ${serviceTitle} y me gustaría hablar con un estratega.\n\nPerfil: ${answers.profile}\nEtapa: ${answers.stage}\nObjetivo: ${Array.isArray(answers.objective) ? answers.objective.join(", ") : answers.objective}\nTerritorio: ${answers.territory}`
+      `Hello, I completed the diagnostic for ${serviceTitle} and would like to speak with a strategist.\n\nProfile: ${answers.profile}\nStage: ${answers.stage}\nObjective: ${Array.isArray(answers.objective) ? answers.objective.join(", ") : answers.objective}\nTerritory: ${answers.territory}`
     )
     window.open(`https://wa.me/573161744421?text=${message}`, "_blank")
   }
@@ -190,9 +197,9 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
                 <Logo />
               </div>
               <div>
-                <h2 className="font-semibold text-foreground">Diagnóstico {serviceTitle}</h2>
+                <h2 className="font-semibold text-foreground">Diagnostic {serviceTitle}</h2>
                 <p className="text-sm text-muted-foreground">
-                  {showResult ? "Resultado" : `Paso ${currentStep + 1} de ${steps.length}`}
+                  {showResult ? t.checkout.orderStatus : `Step ${currentStep + 1} of ${steps.length}`}
                 </p>
               </div>
             </div>
@@ -221,33 +228,33 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
               <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Resultado del Diagnostico</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">{t.diagnostic.success}</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Segun tu informacion, el servicio de <span className="text-accent font-medium">{serviceTitle}</span> si puede ayudarte a mejorar tu percepcion digital y optimizar tu estrategia de comunicacion.
+                {t.diagnostic.successDesc}
               </p>
               
               <div className="bg-secondary/50 rounded-xl p-4 mb-6 text-left">
-                <h4 className="font-medium text-foreground mb-2">Resumen de tu perfil:</h4>
+                <h4 className="font-medium text-foreground mb-2">Profile Summary:</h4>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li><span className="text-foreground">Perfil:</span> {answers.profile}</li>
-                  <li><span className="text-foreground">Etapa:</span> {answers.stage}</li>
-                  <li><span className="text-foreground">Territorio:</span> {answers.territory}</li>
-                  <li><span className="text-foreground">Presencia actual:</span> {answers.presence}</li>
+                  <li><span className="text-foreground">Profile:</span> {answers.profile}</li>
+                  <li><span className="text-foreground">Stage:</span> {answers.stage}</li>
+                  <li><span className="text-foreground">Territory:</span> {answers.territory}</li>
+                  <li><span className="text-foreground">Current presence:</span> {answers.presence}</li>
                 </ul>
               </div>
 
               <p className="text-sm text-muted-foreground mb-6">
-                Recomendamos una estrategia personalizada antes de activar el servicio.
+                {t.checkout.strategicNote}
               </p>
 
               <div className="flex flex-col gap-3">
                 <Button onClick={handleAddToCart} className="w-full">
                   <Brain className="w-4 h-4 mr-2" />
-                  Continuar con {serviceTitle}
+                  {t.hero.btnPrimary}
                 </Button>
                 <Button variant="outline" onClick={handleContactStrategist} className="w-full bg-transparent">
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Hablar con un Estratega
+                  {t.hero.btnSecondary}
                 </Button>
               </div>
             </div>
@@ -258,10 +265,10 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
 
               {step.type === "input" ? (
                 <div>
-                  <Label htmlFor="territory" className="sr-only">Territorio</Label>
+                  <Label htmlFor="territory" className="sr-only">{t.diagnostic.territoryTitle}</Label>
                   <Input
                     id="territory"
-                    placeholder="Ej: Mexico, CDMX / Colombia, Bogota"
+                    placeholder="e.g., USA, New York / UK, London"
                     value={(answers[step.key] as string) || ""}
                     onChange={(e) => handleInputChange(e.target.value)}
                     className="text-base"
@@ -301,7 +308,7 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
               )}
 
               {step.multiple && (
-                <p className="text-xs text-muted-foreground mt-3">Puedes seleccionar multiples opciones</p>
+                <p className="text-xs text-muted-foreground mt-3">You can select multiple options</p>
               )}
             </>
           )}
@@ -312,11 +319,11 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
             {currentStep > 0 && (
               <Button variant="outline" onClick={handleBack} className="bg-transparent">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Atras
+                {t.checkout.back}
               </Button>
             )}
             <Button onClick={handleNext} disabled={!canContinue()} className="flex-1">
-              {isLastStep ? "Ver Resultado" : "Continuar"}
+              {isLastStep ? t.checkout.orderStatus : t.hero.btnPrimary}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -326,7 +333,7 @@ export function DiagnosticModal({ isOpen, onClose, service }: DiagnosticModalPro
           <div className="p-6 border-t border-border">
             <Button variant="ghost" onClick={handleBack} className="w-full">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al diagnostico
+              {t.checkout.back}
             </Button>
           </div>
         )}

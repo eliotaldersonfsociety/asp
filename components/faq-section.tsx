@@ -1,58 +1,63 @@
-import { FAQItem } from "./faq-item"
+"use client"
 
-const faqs = [
+import { FAQItem } from "./faq-item"
+import { useLanguage } from "@/contexts/language-context"
+
+const faqsData = [
   {
-    question: "¿Es seguro para mi cuenta?",
+    question: "Is it safe for my account?",
     answer:
-      "Sí. Utilizamos métodos orgánicos y estratégicos que respetan los términos de servicio de cada plataforma para garantizar la seguridad total de tu cuenta.",
+      "Yes. We use organic and strategic methods that respect the terms of service of each platform to guarantee total security for your account.",
   },
   {
-    question: "¿Los seguidores interactuan?",
+    question: "Do the followers interact?",
     answer:
-      "Trabajamos con una red de perfiles de alta calidad interesados en diferentes nichos, lo que garantiza un crecimiento con apariencia natural.",
+      "We work with a network of high-quality profiles interested in different niches, which guarantees growth with a natural appearance.",
   },
   {
-    question: "¿Cómo funciona el servicio de IA Política?",
+    question: "How does the Political AI service work?",
     answer:
-      "Nuestra IA analiza el sentimiento de la audiencia en tiempo real, optimiza tus mensajes clave y monitorea la percepción pública para ajustar tu estrategia de comunicación de manera efectiva.",
+      "Our AI analyzes audience sentiment in real-time, optimizes your key messages, and monitors public perception to adjust your communication strategy effectively.",
   },
   {
-    question: "¿Cuánto tiempo tarda en iniciar el servicio?",
+    question: "How long does it take to start the service?",
     answer:
-      "La mayoría de los servicios de SMM inician en menos de 24 horas. Los análisis estratégicos de IA suelen entregarse en reportes semanales tras la configuración inicial.",
+      "Most SMM services start in less than 24 hours. AI strategic analyses are usually delivered in weekly reports after initial setup.",
   },
   {
-    question: "¿Necesitan mi contraseña?",
+    question: "Do you need my password?",
     answer:
-      "Nunca te pediremos tu contraseña. Solo necesitamos el enlace público de tu perfil o el @usuario para aplicar las estrategias de crecimiento.",
+      "We will never ask for your password. We only need the public link to your profile or @username to apply growth strategies.",
   },
   {
-    question: "¿Qué métodos de pago aceptan?",
+    question: "What payment methods do you accept?",
     answer:
-      "Aceptamos Bancolombia, Nequi, Daviplata y PayPal. Todos los pagos son seguros y procesados de manera profesional.",
+      "We accept bank transfers, digital wallets, and PayPal. All payments are secure and processed professionally.",
   },
   {
-    question: "¿Ofrecen garantía en el servicio?",
+    question: "Do you offer a guarantee on the service?",
     answer:
-      "Sí, contamos con garantía de reposición en nuestros servicios de crecimiento y soporte estratégico continuo para asegurar tu satisfacción absoluta.",
+      "Yes, we have a replacement guarantee on our growth services and continuous strategic support to ensure your absolute satisfaction.",
   },
 ]
 
 export function FAQSection() {
+  const { t } = useLanguage()
+  
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Preguntas Frecuentes
+            Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Resolvemos tus dudas antes de empezar
+            We answer your questions before getting started
           </p>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqsData.map((faq, index) => (
             <FAQItem key={faq.question} faq={faq} index={index} />
           ))}
         </div>

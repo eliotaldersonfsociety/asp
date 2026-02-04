@@ -13,23 +13,23 @@ export function LegalSection() {
           
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-foreground mb-4">
-              Compromiso Etico y Transparencia
+              Ethical Commitment and Transparency
             </h3>
             
             <div className="space-y-4 text-sm text-muted-foreground">
               <p>
-                Nuestros servicios se enfocan en <span className="text-foreground">analisis, posicionamiento digital y amplificacion estrategica</span>. 
-                Trabajamos para maximizar el alcance de mensajes legitimos y mejorar la percepcion publica de nuestros clientes.
+                Our services focus on <span className="text-foreground">analysis, digital positioning, and strategic amplification</span>. 
+                We work to maximize the reach of legitimate messages and improve the public perception of our clients.
               </p>
               
               <div className="flex items-start gap-3">
                 <FileCheck className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <p>No creamos contenido falso, noticias falsas ni suplantamos identidades.</p>
+                <p>We do not create fake content, fake news, or impersonate identities.</p>
               </div>
               
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <p>El cliente es responsable del contenido publicado en sus redes sociales.</p>
+                <p>The client is responsible for the content published on their social media.</p>
               </div>
             </div>
           </div>

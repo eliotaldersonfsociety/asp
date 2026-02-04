@@ -48,7 +48,7 @@ export default function LoginPage() {
     setIsLoading(true)
 
     if (!email || !password) {
-      setError("Por favor completa todos los campos")
+      setError("Please fill in all fields")
       setIsLoading(false)
       return
     }
@@ -68,7 +68,7 @@ export default function LoginPage() {
       
       router.push(targetPath)
     } else {
-      setError(result.error || "Email o contraseña incorrectos")
+      setError(result.error || "Invalid email or password")
     }
     
     setIsLoading(false)
@@ -84,7 +84,7 @@ export default function LoginPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Volver al inicio
+            Back to home
           </Link>
 
           <Card className="border-border">
@@ -92,9 +92,9 @@ export default function LoginPage() {
               <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mx-auto mb-4">
                 <Logo />
               </div>
-              <CardTitle className="text-2xl">Iniciar Sesion</CardTitle>
+              <CardTitle className="text-2xl">Sign In</CardTitle>
               <CardDescription>
-                Ingresa tus credenciales para acceder a tu cuenta
+                Enter your credentials to access your account
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -104,7 +104,7 @@ export default function LoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
@@ -112,12 +112,12 @@ export default function LoginPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Contrasena</Label>
+                    <Label htmlFor="password">Password</Label>
                     <Link
                       href="/forgot-password"
                       className="text-xs text-accent hover:underline"
                     >
-                      ¿Olvidaste tu contraseña?
+                      Forgot your password?
                     </Link>
                   </div>
                   <Input
@@ -138,19 +138,19 @@ export default function LoginPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Iniciando sesion...
+                      Signing in...
                     </>
                   ) : (
-                    "Iniciar Sesion"
+                    "Sign In"
                   )}
                 </Button>
               </form>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
               <div className="text-sm text-center text-muted-foreground">
-                No tienes una cuenta?{" "}
+                Don't have an account?{" "}
                 <Link href="/register" className="text-accent hover:underline">
-                  Crear cuenta
+                  Create account
                 </Link>
               </div>
             </CardFooter>

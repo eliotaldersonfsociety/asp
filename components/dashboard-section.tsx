@@ -1,29 +1,28 @@
+"use client"
+
 import { BarChart3, TrendingUp, Users, Activity } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export function DashboardSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-              Dashboard & Reportes
+              {t.dashboard.badge}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-              Decisiones basadas en datos, no suposiciones
+              {t.dashboard.title}
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Accede a reportes claros sobre crecimiento, engagement y percepcion publica. 
-              Visualiza el impacto de cada campana en tiempo real.
+              {t.dashboard.description}
             </p>
             
             <div className="space-y-4">
-              {[
-                "Metricas de crecimiento en tiempo real",
-                "Analisis de engagement por publicacion",
-                "Reportes de percepcion publica",
-                "Comparativas antes/despues de campanas",
-              ].map((item) => (
+              {t.dashboard.features.map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-accent" />
@@ -40,8 +39,8 @@ export function DashboardSection() {
             <div className="relative bg-card border border-border rounded-2xl p-6 shadow-xl">
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold text-foreground">Panel de Control</h3>
-                <span className="text-xs text-muted-foreground">Ultima actualizacion: hace 5 min</span>
+                <h3 className="font-semibold text-foreground">{t.dashboard.panelTitle}</h3>
+                <span className="text-xs text-muted-foreground">{t.dashboard.lastUpdate}</span>
               </div>
 
               {/* Stats Grid */}
@@ -49,25 +48,25 @@ export function DashboardSection() {
                 <div className="p-4 rounded-lg bg-secondary">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="w-4 h-4 text-accent" />
-                    <span className="text-xs text-muted-foreground">Seguidores</span>
+                    <span className="text-xs text-muted-foreground">{t.dashboard.followers}</span>
                   </div>
                   <div className="text-2xl font-bold text-foreground">24,589</div>
-                  <div className="text-xs text-accent">+12.5% esta semana</div>
+                  <div className="text-xs text-accent">{t.dashboard.weeklyGrowth}</div>
                 </div>
                 <div className="p-4 rounded-lg bg-secondary">
                   <div className="flex items-center gap-2 mb-2">
                     <Activity className="w-4 h-4 text-accent" />
-                    <span className="text-xs text-muted-foreground">Engagement</span>
+                    <span className="text-xs text-muted-foreground">{t.dashboard.engagement}</span>
                   </div>
                   <div className="text-2xl font-bold text-foreground">8.7%</div>
-                  <div className="text-xs text-accent">+3.2% vs anterior</div>
+                  <div className="text-xs text-accent">{t.dashboard.previousComparison}</div>
                 </div>
               </div>
 
               {/* Chart Mock */}
               <div className="p-4 rounded-lg bg-secondary">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-muted-foreground">Crecimiento Mensual</span>
+                  <span className="text-sm text-muted-foreground">{t.dashboard.monthlyGrowth}</span>
                   <TrendingUp className="w-4 h-4 text-accent" />
                 </div>
                 <div className="flex items-end gap-2 h-24">
@@ -85,13 +84,9 @@ export function DashboardSection() {
                   ))}
                 </div>
                 <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                  <span>Lun</span>
-                  <span>Mar</span>
-                  <span>Mie</span>
-                  <span>Jue</span>
-                  <span>Vie</span>
-                  <span>Sab</span>
-                  <span>Dom</span>
+                  {t.dashboard.days.map((day) => (
+                    <span key={day}>{day}</span>
+                  ))}
                 </div>
               </div>
             </div>
