@@ -13,6 +13,7 @@ type TranslationType = {
   diagnostic: typeof translations.en.diagnostic
   contact: typeof translations.en.contact
   header: typeof translations.en.header
+  ticker: typeof translations.en.ticker
   useCases: {
     title: string
     subtitle: string

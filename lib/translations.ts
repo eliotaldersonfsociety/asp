@@ -190,6 +190,9 @@ export const translations = {
     header: {
       brand: "Aumento de Seguidores"
     },
+    ticker: {
+      message: "Hemos llevado más de 10 campañas políticas obteniendo un 80% de triunfo"
+    },
     useCases: {
       title: "Casos de Uso",
       subtitle: "Escenarios reales donde nuestros clientes han transformado su presencia digital",
@@ -602,6 +605,9 @@ export const translations = {
     },
     header: {
       brand: "Follower Growth"
+    },
+    ticker: {
+      message: "We have led more than 10 political campaigns achieving 80% victory"
     },
     useCases: {
       title: "Use Cases",

@@ -34,11 +34,17 @@ const iconMap: Record<string, any> = {
 
 export function ServiceCard({ service }: { service: any }) {
   const { addToCart } = useCart()
-  const { t, formatPrice } = useLanguage()
+  const { t, formatPrice, language } = useLanguage()
   const [added, setAdded] = useState(false)
   const [showDiagnostic, setShowDiagnostic] = useState(false)
 
   const Icon = iconMap[service.icon]
+
+  // Seleccionar texto según el idioma
+  const title = language === 'es' ? service.titleEs : service.title
+  const subtitle = language === 'es' ? service.subtitleEs : service.subtitle
+  const description = language === 'es' ? service.descriptionEs : service.description
+  const features = language === 'es' ? service.featuresEs : service.features
 
   const handleAddToCart = () => {
     if (service.requiresDiagnostic) {
@@ -48,8 +54,8 @@ export function ServiceCard({ service }: { service: any }) {
 
     addToCart({
       id: service.id,
-      name: service.title,
-      description: service.subtitle,
+      name: title,
+      description: subtitle,
       price: service.price,
     })
 
@@ -92,21 +98,21 @@ export function ServiceCard({ service }: { service: any }) {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold">{service.title}</h3>
+            <h3 className="text-xl font-bold">{title}</h3>
             <p className="text-sm text-muted-foreground">
-              {service.subtitle}
+              {subtitle}
             </p>
           </div>
         </div>
 
         {/* DESCRIPTION */}
         <p className="text-muted-foreground mb-6 flex-grow">
-          {service.description}
+          {description}
         </p>
 
         {/* FEATURES */}
         <ul className="space-y-3 mb-8">
-          {service.features.map((feature: string) => (
+          {features.map((feature: string) => (
             <li key={feature} className="flex gap-3 text-sm">
               <Check className="w-5 h-5 text-accent shrink-0 mt-0.5" />
               <span>{feature}</span>
@@ -157,8 +163,8 @@ export function ServiceCard({ service }: { service: any }) {
         onClose={() => setShowDiagnostic(false)}
         service={{
           id: service.id,
-          title: service.title,
-          subtitle: service.subtitle,
+          title: title,
+          subtitle: subtitle,
           price: service.price,
         }}
       />

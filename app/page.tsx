@@ -1,4 +1,5 @@
 import { Header } from "@/components/header"
+import { PoliticalTicker } from "@/components/political-ticker"
 import { HeroSection } from "@/components/hero-section"
 import { AudienceSection } from "@/components/audience-section"
 import { BridgeSection } from "@/components/bridge-section"
@@ -14,8 +15,9 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background pt-16">
       <Header />
+      <PoliticalTicker />
       <HeroSection />
       <AudienceSection />
       <BridgeSection />
