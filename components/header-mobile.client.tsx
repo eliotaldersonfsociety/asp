@@ -88,16 +88,16 @@ export function HeaderMobile() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button variant="ghost" size="icon" asChild className="rounded-full h-8 w-8 p-0">
-          <Link href="/login" aria-label={t.nav.login}>
+        <Button variant="ghost" size="icon" asChild className="rounded-full h-8 w-8 p-0" aria-label={t.nav.login}>
+          <Link href="/login">
             <UserIcon className="w-5 h-5 text-foreground" />
           </Link>
         </Button>
       )}
 
       {/* CART */}
-      <Button variant="ghost" size="icon" className="relative" asChild>
-        <Link href="/checkout" aria-label={t.nav.cart}>
+      <Button variant="ghost" size="icon" className="relative" aria-label={t.nav.cart} asChild>
+        <Link href="/checkout">
           <ShoppingCart className="w-5 h-5" />
           {mounted && totalItems > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center">
@@ -130,6 +130,7 @@ export function HeaderMobile() {
               <a
                 key={href}
                 href={href}
+                aria-label={label as string}
                 className="text-sm px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
                 onClick={() => setOpen(false)}
               >
@@ -138,6 +139,7 @@ export function HeaderMobile() {
             ))}
             <Link
               href="/contacto"
+              aria-label={t.nav.contact}
               className="text-sm px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
               onClick={() => setOpen(false)}
             >
