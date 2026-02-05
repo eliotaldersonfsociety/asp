@@ -12,7 +12,11 @@ export const translations = {
       benefits: "Beneficios",
       howItWorks: "Cómo Funciona",
       adminPanel: "Panel Admin",
-      createAccount: "Crear Cuenta"
+      createAccount: "Crear Cuenta",
+      toggleLanguage: "Cambiar a inglés",
+      toggleTheme: "Cambiar tema",
+      userMenu: "Menú de usuario",
+      cart: "Carrito de compras"
     },
     hero: {
       badge: "Crecimiento Real en Redes Sociales",
@@ -428,7 +432,11 @@ export const translations = {
       benefits: "Benefits",
       howItWorks: "How it Works",
       adminPanel: "Admin Panel",
-      createAccount: "Create Account"
+      createAccount: "Create Account",
+      toggleLanguage: "Switch to Spanish",
+      toggleTheme: "Toggle theme",
+      userMenu: "User menu",
+      cart: "Shopping cart"
     },
     hero: {
       badge: "Real Social Media Growth",

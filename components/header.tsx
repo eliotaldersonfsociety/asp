@@ -53,6 +53,7 @@ export function Header() {
               size="sm"
               className="font-bold w-10 h-10 rounded-full"
               onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              aria-label={t.nav.toggleLanguage}
             >
               {language === 'es' ? 'EN' : 'ES'}
             </Button>

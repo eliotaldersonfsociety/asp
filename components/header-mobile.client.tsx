@@ -44,6 +44,7 @@ export function HeaderMobile() {
         size="icon"
         onClick={toggleTheme}
         disabled={!mounted}
+        aria-label={t.nav.toggleTheme}
       >
         {!mounted ? (
           <Moon className="w-5 h-5 opacity-50" />
@@ -58,7 +59,10 @@ export function HeaderMobile() {
       {user ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="relative flex items-center justify-center overflow-hidden rounded-full h-8 w-8 border border-green-500/20 shrink-0">
+            <button
+              className="relative flex items-center justify-center overflow-hidden rounded-full h-8 w-8 border border-green-500/20 shrink-0"
+              aria-label={t.nav.userMenu}
+            >
                <div className="w-full h-full bg-green-500 text-white flex items-center justify-center text-xs font-bold uppercase shadow-[0_0_8px_rgba(34,197,94,0.3)]">
                   {user.name?.charAt(0) || user.email?.charAt(0)}
                </div>
@@ -85,7 +89,7 @@ export function HeaderMobile() {
         </DropdownMenu>
       ) : (
         <Button variant="ghost" size="icon" asChild className="rounded-full h-8 w-8 p-0">
-          <Link href="/login">
+          <Link href="/login" aria-label={t.nav.login}>
             <UserIcon className="w-5 h-5 text-foreground" />
           </Link>
         </Button>
@@ -93,7 +97,7 @@ export function HeaderMobile() {
 
       {/* CART */}
       <Button variant="ghost" size="icon" className="relative" asChild>
-        <Link href="/checkout">
+        <Link href="/checkout" aria-label={t.nav.cart}>
           <ShoppingCart className="w-5 h-5" />
           {mounted && totalItems > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center">
