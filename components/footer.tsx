@@ -25,7 +25,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-border flex flex-col items-center justify-center gap-4 text-center">
           <p className="text-[11px] text-muted-foreground tracking-wide">
-            &copy; {new Date().getFullYear()} followerboost.com. {t.footer.rights}
+            &copy; {new Date().getFullYear()} aumentodeseguidores.com. {t.footer.rights}
           </p>
           <div className="flex gap-6">
             <Link href="/terminos" className="text-[10px] text-muted-foreground hover:text-accent transition-colors">
