@@ -18,6 +18,12 @@ type TranslationType = {
     q: string
     a: string
   }>
+  ethical: {
+    title: string
+    description: string
+    noFakeContent: string
+    clientResponsibility: string
+  }
   useCases: {
     title: string
     subtitle: string

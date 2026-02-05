@@ -417,7 +417,13 @@ export const translations = {
           gradient: "from-pink-500 to-rose-500"
         }
       ]
-    }
+    },
+    ethical: {
+      title: "Compromiso Ético y Transparencia",
+      description: "Nuestros servicios se centran en el análisis, posicionamiento digital y amplificación estratégica. Trabajamos para maximizar el alcance de mensajes legítimos y mejorar la percepción pública de nuestros clientes.",
+      noFakeContent: "No creamos contenido falso, noticias falsas ni suplantamos identidades.",
+      clientResponsibility: "El cliente es responsable del contenido publicado en sus redes sociales."
+    },
   },
   en: {
     nav: {
@@ -837,6 +843,12 @@ export const translations = {
           gradient: "from-pink-500 to-rose-500"
         }
       ]
+    },
+    ethical: {
+      title: "Ethical Commitment and Transparency",
+      description: "Our services focus on analysis, digital positioning, and strategic amplification. We work to maximize the reach of legitimate messages and improve the public perception of our clients.",
+      noFakeContent: "We do not create fake content, fake news, or impersonate identities.",
+      clientResponsibility: "The client is responsible for the content published on their social media."
     }
   }
 };
