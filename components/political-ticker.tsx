@@ -10,14 +10,18 @@ export function PoliticalTicker() {
 
   const message = language === 'es' ? messageEs : messageEn
 
+  // Repetir el mensaje varias veces para efecto marquee infinito
+  const repeatedMessage = Array(10).fill(message).map((msg, index) => (
+    <span key={index} className="text-white font-bold text-sm mx-8 flex items-center gap-2">
+      <span>🏆</span>
+      {msg}
+    </span>
+  ))
+
   return (
     <div className="w-full bg-red-600 overflow-hidden py-2">
-      <div className="relative inline-block whitespace-nowrap animate-marquee">
-        <span className="text-white font-bold text-sm mx-8 flex items-center gap-2">
-          <span>🏆</span>
-          {message}
-        </span>
-        
+      <div className="inline-block whitespace-nowrap animate-marquee">
+        {repeatedMessage}
       </div>
     </div>
   )
